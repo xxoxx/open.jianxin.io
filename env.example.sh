@@ -1,0 +1,4 @@
+#!/bin/sh
+
+export OPEN_GITHUB_KEY = df4f507803280805e506
+export OPEN_GITHUB_SECRET = b719deaeb8ff8d78b79676c7a0db688ad8918eb6

@@ -1,0 +1,11 @@
+source 'https://rubygems.org'
+
+gem 'thin'
+gem 'oj'
+gem 'rake'
+gem 'slim'
+gem 'padrino', '0.12.3'
+gem 'mongoid'
+gem 'faraday'
+gem 'omniauth'
+gem 'omniauth-github'

@@ -1,0 +1,21 @@
+development:
+  sessions:
+    default:
+      database: open_jianxin_io_development
+      hosts:
+        - localhost:27017
+  options:
+    raise_not_found_error: false
+    use_utc: false
+    use_activesupport_time_zone: true
+
+production:
+  sessions:
+    default:
+      database: open_jianxin_io_production
+      hosts:
+        - localhost:27017
+  options:
+    raise_not_found_error: false
+    use_utc: false
+    use_activesupport_time_zone: true
