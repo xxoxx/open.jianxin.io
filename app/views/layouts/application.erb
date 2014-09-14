@@ -1,0 +1,45 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title><%= @title %> | 简信开源管理</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <%= stylesheet_link_tag 'bootstrap.min' %>
+  <%= yield_content :assets %>
+</head>
+<body>
+<div class="container">
+  <nav class="navbar navbar-default" style="margin-top: 10px;" role="navigation">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">简信开源管理</a>
+      </div>
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li><a href="#" class="">开发进度</a></li>
+          <li><a href="#" class="">新需求提交</a></li>
+        </ul>
+        <% if logged_in? %>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="#"><%= current_account %></a></li>
+              <li><a href="#">退出账户</a></li>
+            </ul>
+        <% else %>
+            <ul class="nav navbar-nav navbar-right">
+              <li>
+                <a href="/auth/github" class="btn btn-link btn-sm">
+                  <span class="glyphicon glyphicon-heart"></span>
+                  使用 Github登录
+                </a>
+              </li>
+            </ul>
+        <% end %>
+      </div>
+    </div>
+  </nav>
+  <%= yield %>
+</div>
+<%= javascript_include_tag 'jquery.min' %>
+<%= javascript_include_tag 'bootstrap.min' %>
+<%= yield_content :javascript %>
+</body>
+</html>

@@ -2,12 +2,12 @@
 
 module OpenJianxinIo
   class App
-    module AuthHelper
+    module AccountHelper
       # def simple_helper_method
       # ...
       # end
     end
 
-    helpers AuthHelper
+    helpers AccountHelper
   end
 end
