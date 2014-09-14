@@ -14,21 +14,21 @@
         <a class="navbar-brand" href="#">简信开源管理</a>
       </div>
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav">
-          <li><a href="#" class="">开发进度</a></li>
-          <li><a href="#" class="">新需求提交</a></li>
+        <ul class="nav navbar-nav" id="global-header-nav">
+          <li class="todo"><%= link_to '开发计划', url(:todo, :index) %></li>
+          <li class="vote"><a href="#">新需求列表</a></li>
         </ul>
         <% if logged_in? %>
-            <ul class="nav navbar-nav navbar-right">
-              <li><a href="#"><%= current_account %></a></li>
-              <li><a href="#">退出账户</a></li>
+            <ul class="nav navbar-nav navbar-right small">
+              <li><a href="javascript:void(0)">当前用户 <%= current_account.name %></a></li>
+              <li><%= link_to '退出账户', url(:account, :logout) %></li>
             </ul>
         <% else %>
             <ul class="nav navbar-nav navbar-right">
               <li>
-                <a href="/auth/github" class="btn btn-link btn-sm">
+                <a href="/auth/github" class="small">
                   <span class="glyphicon glyphicon-heart"></span>
-                  使用 Github登录
+                  使用 GitHub 登录
                 </a>
               </li>
             </ul>
@@ -36,10 +36,41 @@
       </div>
     </div>
   </nav>
+  <% if !request.cookies['ignore_subscribe'] && current_account && !current_account.subscribed && !@ignore_subscribe %>
+      <div class="alert alert-warning alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert">
+          <span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <strong>(づ￣3￣)づ~❤ </strong> 客官，要不要订阅下我们的邮件获得最新版的发布信息。
+        <a href="javascript:void(0)" data-toggle="modal" data-target="#ignoreSubscribeModal" class="alert-link">立刻订阅</a>
+        or
+        <a href="javascript:void(0)" aria-hidden="true" data-dismiss="alert" id="btn-ignore-subscribe" class="alert-link">小二死开</a>
+      </div>
+  <% end %>
   <%= yield %>
+</div>
+<div class="modal fade" id="ignoreSubscribeModal" tabindex="-1" role="dialog" aria-labelledby="ignoreSubscribeModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">
+          <span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="ignoreSubscribeModalLabel">订阅信息确认</h4>
+      </div>
+      <div class="modal-body">
+        在您再次确认后，我们将会发送一封确认邮件至您的邮箱。点击邮件中链接即可订阅成功。</br>
+        <p class="text-muted small" style="padding-top: 15px">您今后可以随时点击邮件中的退订链接取消推送</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <%= link_to '发送确认邮件', url(:subscribe, :send), class: 'btn btn-primary' %>
+      </div>
+    </div>
+  </div>
 </div>
 <%= javascript_include_tag 'jquery.min' %>
 <%= javascript_include_tag 'bootstrap.min' %>
+<%= javascript_include_tag 'jquery.cookie' %>
+<%= javascript_include_tag 'application' %>
 <%= yield_content :javascript %>
 </body>
 </html>

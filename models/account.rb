@@ -2,13 +2,15 @@ class Account
   include Mongoid::Document
   include Mongoid::Timestamps # adds created_at and updated_at fields
 
-  field :name, :type => String
-  field :email, :type => String
-  field :github, :type => String
-  field :blog, :type => String
+  field :name, type: String
+  field :email, type: String
+  field :github, type: String
+  field :blog, type: String
+  field :subscribed, type: Boolean, default: false
+  field :secret, type: String, default: -> { (0...10).map { ('a'..'z').to_a[rand(26)] }.join }
 
   # You can define indexes on documents using the index macro:
-  index({email: 1}, :unique => true)
+  index({email: 1}, unique: true)
 
   def self.find_by_id(id)
     unless id

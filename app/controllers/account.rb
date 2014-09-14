@@ -16,7 +16,7 @@ OpenJianxinIo::App.controllers :account do
     redirect_back_or_default('/')
   end
 
-  get '/logout' do
+  get :logout do
     set_current_account nil
     redirect '/'
   end

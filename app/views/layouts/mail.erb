@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html">
+<head>
+  <title></title>
+</head>
+<body style="word-wrap: break-word; -webkit-nbsp-mode: space; -webkit-line-break: after-white-space;">
+<div id="jianxin-mail-content" style="margin: 0px;">
+  <p style="color: #42B2EA;line-height: 40px;margin: 0">
+                <span style="font-size: 32px;">
+                    <strong>简信开源</strong>
+                </span>
+  </p>
+
+  <p style="line-height: 1; font-size: 14px;color: #a1a1a1;white-space: pre-wrap;margin: 5px 0 0 ">http//open.jianxin.io</p>
+
+  <div class="content" style="font-size: 14px;padding:15px 0 25px; border-bottom: 1px solid #c2c2c2">
+    <p>亲爱的 <%= current_account.name %>：</p>
+    <%= yield %>
+  </div>
+  <div class="footer" style="color: #a1a1a1; font-size: 12px; margin-top: 10px;">
+    <p style="color: #a1a1a1; font-size: 12px; padding-top: 10px">您可以随时点击
+      <a href="<%= dump_url('unsubscribe', current_account) %>">退订</a>取消邮件订阅，给您带来的不便我们深表歉意。
+    </p>
+  </div>
+</div>
+</body>
+</html>
